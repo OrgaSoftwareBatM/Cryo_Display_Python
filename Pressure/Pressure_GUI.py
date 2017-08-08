@@ -23,6 +23,41 @@ class Pressure_GUI(Dock):
                  buffer_size = 20000.0,
                  store_folder = 'Pressure/data'
                  ):
+<<<<<<< HEAD
+        super(Pressure_GUI, self).__init__(name='Pressure',autoOrientation=False) 
+
+        self.addWidget(QtGui.QLabel('Serial port'),1,1)
+        self.serial_port = QtGui.QLineEdit(serial_port)
+        self.addWidget(self.serial_port,1,2)
+        btn = QtGui.QPushButton('Connect')
+        btn.clicked.connect(self.open_com)
+        self.addWidget(btn,1,3)
+
+        self.addWidget(QtGui.QLabel('Storage folder'),2,1)
+        self.store_folder = QtGui.QLineEdit(store_folder)
+        self.addWidget(self.store_folder,2,2)
+        btn = QtGui.QPushButton('Change')
+        btn.clicked.connect(self.browse)
+        self.addWidget(btn,2,3)
+        
+        self.addWidget(QtGui.QLabel('Refresh time (s)'),3,1)
+        self.refresh_time = pg.SpinBox(value=refresh_time, bounds=[1., None], step=1)
+        self.addWidget(self.refresh_time,3,2)
+        
+        self.addWidget(QtGui.QLabel('Storage time (s)'),4,1)
+        self.store_time = pg.SpinBox(value=store_time, bounds=[1., None], step=1)
+        self.addWidget(self.store_time,4,2)
+        
+        self.addWidget(QtGui.QLabel('Buffer size'),5,1)
+        self.buffer_size = pg.SpinBox(value=buffer_size, bounds=[1, None], int=True)
+        self.addWidget(self.buffer_size,5,2)
+        
+        self.layout.setColumnMinimumWidth(0,20)
+        self.layout.setColumnMinimumWidth(4,50)   
+        self.layout.setRowMinimumHeight(0,20)
+        self.layout.setRowMinimumHeight(13,20)
+        self.layout.setSpacing(20.)
+=======
         super(Pressure_GUI, self).__init__(name='Pressure') 
 
         self.addWidget(QtGui.QLabel('Serial port'),0,0)
@@ -50,6 +85,7 @@ class Pressure_GUI(Dock):
         self.addWidget(QtGui.QLabel('Buffer size'),4,0)
         self.buffer_size = pg.SpinBox(value=buffer_size, bounds=[1, None], int=True)
         self.addWidget(self.buffer_size,4,1)
+>>>>>>> origin/master
         
         ### Open communication
         self.open_com()
@@ -66,14 +102,24 @@ class Pressure_GUI(Dock):
       
     def open_com(self):
         try:
+<<<<<<< HEAD
+            self.gauge = MaxiGauge(self.serial_port.text()) # Start communication with Serial port (RS232)
+=======
             self.gauge = MaxiGauge(self.serial_port) # Start communication with Serial port (RS232)
+>>>>>>> origin/master
             self.gauge_names = self.gauge.send('CID',1) # ask for channel names
             self.gauge_names = self.gauge_names[0].split(',') # format the names in a list
             self.active_gauge = [sensor.status in [0,1,2] for sensor in self.gauge.pressures()] # update active gauges
             self.Ng = len(self.gauge_names)
             return 1
+<<<<<<< HEAD
+        except MaxiGaugeError as mge:
+            print ('Was not able to open communication with port '+self.serial_port.text())
+            print (mge)
+=======
         except:
             print ('Was not able to open communication with port '+self.serial_port.text())
+>>>>>>> origin/master
             return 0
         
     def browse(self):

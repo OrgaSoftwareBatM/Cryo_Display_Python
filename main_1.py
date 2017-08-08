@@ -148,29 +148,29 @@ buffer_size = 20000.0
 Temperature = TemperatureThread(ip_address,refresh_time,store_time,buffer_size)
 Temperature.start()
 
-serial_port = 'COM3'
-heating_current = 0.15
-heating_time = 5
-meas_current= 0.1
-meas_time = 10
-normal_refresh= 7200.0
-transfer_refresh= 15.0
-store_time = 60.0
-buffer_size = 20000
-HeLevel = HeLevelThread(serial_port,heating_current,heating_time,meas_current,meas_time,normal_refresh,transfer_refresh,store_time,buffer_size)
-HeLevel.start()
+#serial_port = 'COM3'
+#heating_current = 0.15
+#heating_time = 5
+#meas_current= 0.1
+#meas_time = 10
+#normal_refresh= 7200.0
+#transfer_refresh= 15.0
+#store_time = 60.0
+#buffer_size = 20000
+#HeLevel = HeLevelThread(serial_port,heating_current,heating_time,meas_current,meas_time,normal_refresh,transfer_refresh,store_time,buffer_size)
+#HeLevel.start()
 #HeLevel.transfer_mode = True
 
-plt.ion()
-time.sleep(20)
-Plot = PlottingWindow(Pressure,Temperature,HeLevel,pressure_range=2*3600.0,temperature_range=2*3600.0,helevel_range=12*3600.0,refresh_time=5.0)
-Plot.start()
+#plt.ion()
+#time.sleep(20)
+#Plot = PlottingWindow(Pressure,Temperature,HeLevel,pressure_range=2*3600.0,temperature_range=2*3600.0,helevel_range=12*3600.0,refresh_time=5.0)
+#Plot.start()
 
-Plot.pressure_range = 24*3600.0
-Plot.temperature_range = 24*3600.0
-Plot.helevel_range = 24*3600.0
+#Plot.pressure_range = 24*3600.0
+#Plot.temperature_range = 24*3600.0
+#Plot.helevel_range = 24*3600.0
 
 
-HeLevel.refresh()
+#HeLevel.refresh()
 #Plot.pressure_range = 15*60.0
 #Plot.temperature_range = 15*60.0

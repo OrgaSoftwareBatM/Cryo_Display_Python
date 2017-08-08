@@ -29,13 +29,20 @@ class Main_Plot_Window(QtGui.QMainWindow):
         self.docks.append(Plot_Dock(parent=self,param='HeR',loc='bottom',rel_to=self.docks[-1]))
         for d in self.docks:
             self.plot_area.addDock(d,d.loc,d.rel_to)
+<<<<<<< HEAD
+=======
 #        self.settings_dock = Dock('Settings', size=(1, 1))
+>>>>>>> origin/master
         self.settings_dock = Option_For_All(parent=self)
         self.plot_area.addDock(self.settings_dock,'bottom',self.docks[-1])
 
         self.meas_area = DockArea()
         self.pressure_thread = Pressure_GUI(serial_port = 'COM4',
+<<<<<<< HEAD
+                                            refresh_time = 5.0,
+=======
                                             refresh_time = 500.0,
+>>>>>>> origin/master
                                             store_time = 1500.0, 
                                             buffer_size = 20000.0,
                                             store_folder = 'Pressure/data')
@@ -45,7 +52,11 @@ class Main_Plot_Window(QtGui.QMainWindow):
                                                   store_time = 15.0, 
                                                   buffer_size = 20000.0,
                                                   store_folder = 'Temperature/data')
+<<<<<<< HEAD
+        self.meas_area.addDock(self.temperature_thread,'bottom')
+=======
         self.meas_area.addDock(self.temperature_thread,'right')
+>>>>>>> origin/master
         self.helevel_thread = HeLevel_GUI(serial_port = 'COM3',
                                           heating_current = 0.15,
                                           heating_time = 5,
@@ -57,6 +68,14 @@ class Main_Plot_Window(QtGui.QMainWindow):
                                           buffer_size = 20000,
                                           store_folder = 'HeLevel/data')
         self.meas_area.addDock(self.helevel_thread,'right')
+<<<<<<< HEAD
+        self.meas_area.addDock(Dock(name='empty',hideTitle=True),'right')
+        self.meas_area.addDock(Dock(name='empty2',hideTitle=True),'bottom')
+        
+        self.pressure_thread.setOrientation(o='horizontal')
+        self.temperature_thread.setOrientation(o='horizontal')
+=======
+>>>>>>> origin/master
         
         self.tab = QtGui.QTabWidget()
         self.tab.addTab(self.plot_area,'Plot')
